@@ -19,15 +19,19 @@ import {
 } from "reactstrap";
 
 import { useAuth0 } from "../react-auth0-spa";
+import baseUrl from "../utils/baseUrl";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
 
+  console.log("process.env.PUBLIC_URL", process.env.PUBLIC_URL)
+  console.log("baseUrl=", baseUrl)
+
   const logoutWithRedirect = () =>
     logout({
-      returnTo: window.location.origin
+      returnTo: baseUrl
     });
 
   return (

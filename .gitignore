@@ -7,3 +7,4 @@ npm-debug.log
 
 # contains private info
 src/auth0_config.json
+/build
