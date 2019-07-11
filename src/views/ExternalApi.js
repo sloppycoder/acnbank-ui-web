@@ -7,24 +7,25 @@ const ExternalApi = () => {
   const [showResult, setShowResult] = useState(false);
   const [apiMessage, setApiMessage] = useState("");
   const { getTokenSilently } = useAuth0();
+  var responseData;
 
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
 
-      const response = await fetch("http://localhost:8080/api/whoami", {
+      const response = await fetch("/api/whoami", {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const responseData = await response.json();
-
-      setShowResult(true);
-      setApiMessage(responseData);
+      responseData = await response.json();
     } catch (error) {
       console.error(error);
+      responseData = error.message;
     }
+    setShowResult(true);
+    setApiMessage(responseData);
   };
 
   return (
