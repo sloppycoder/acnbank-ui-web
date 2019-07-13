@@ -1,0 +1,6 @@
+{
+  "domain": "acnbank.auth0.com",
+  "clientId": "SBBdyhll9yiViLMrp8R2i3IBnPk4bqyl",
+  "audience": "https://gate.acn.dev/acn-api",
+  "scope": "openid email api:authenticated"
+}

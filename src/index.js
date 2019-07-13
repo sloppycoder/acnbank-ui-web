@@ -21,6 +21,7 @@ ReactDOM.render(
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
+    scope={config.scope}
     audience={config.audience}
     redirect_uri={baseUrl}
     onRedirectCallback={onRedirectCallback}
