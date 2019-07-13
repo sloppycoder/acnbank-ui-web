@@ -9,11 +9,11 @@ const ExternalApi = () => {
   const { getTokenSilently } = useAuth0();
   var responseData;
 
-  const callApi = async () => {
+  const callApi = (path) => async () => {
     try {
       const token = await getTokenSilently();
 
-      const response = await fetch("/api/whoami", {
+      const response = await fetch(`/api/${path}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -38,12 +38,30 @@ const ExternalApi = () => {
           the API's audience value.
         </p>
 
-        <p>
-          Who Am I is an API that displays the details on an JWT token
-        </p>
-        <Button color="primary" className="mt-5" onClick={callApi}>
-          Who Am I
-        </Button>
+        <div>
+          <p>
+          Show my access token
+          </p>
+          <Button color="primary" className="mt-5" onClick={callApi('whoami')}>
+            Show my token
+          </Button>
+        </div>
+        <div>
+          <p>
+          Offers API can only be accessed before authentication
+          </p>
+          <Button color="primary" className="mt-5" onClick={callApi('offers')}>
+            Offers
+          </Button>
+        </div>
+        <div>
+          <p>
+          Transaction History API can only be accessed after full authentication
+          </p>
+          <Button color="primary" className="mt-5" onClick={callApi('transactions')}>
+            Transactions
+          </Button>
+        </div>
       </div>
 
       <div className="result-block-container">
